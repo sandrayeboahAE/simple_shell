@@ -1,5 +1,11 @@
 #include "shell.h"
 
+/**
+ * _strdup - function duplicates a string
+ * @str: string
+ * Return: pointer to duplicated string
+ */
+
 char *_strdup(const char *str);
 {
 	char *ptr;
@@ -22,6 +28,14 @@ char *_strdup(const char *str);
 		ptr[i] = str[i];
 	return (ptr);
 }
+
+/**
+ * _strcmp - function performs lexicogarphic comparison of two strangs.
+ * @s1: first strang
+ * @s2: second strang
+ * Return: negative if s1 < s2, positive if s1 > s2, zero if s1 == s2
+ */
+
 int _strcmp(char *s1, char *s2)
 {
 	int cmp;
@@ -38,6 +52,14 @@ int _strcmp(char *s1, char *s2)
 	}
 	return (cmp);
 }
+
+
+/**
+ * _strlen - function returns the length of a string
+ * @s: string whose length to check
+ * Return: integer length of string
+ */
+
 int _strlen(char *s)
 {
 	int len 0;
@@ -46,6 +68,14 @@ int _strlen(char *s)
 		len++;
 	return (len);
 }
+
+/**
+ * _strcat - function concatenates two strings
+ * @dest: destination buffer
+ * @src: source buffer
+ * Return: pointer to destination buffer
+ */
+
 char *_strcat(char *dest, char *src);
 {
 	char *p = dest;
@@ -62,6 +92,14 @@ char *_strcat(char *dest, char *src);
 	*p = *src;
 	return (dest);
 }
+
+/**
+ * _strcpy - function copies strings
+ * @dest: destination
+ * @src: source
+ * Return: pointer to destination
+ */
+
 char *_strcpy(char *dest, char *src);
 {
 	int i = 0;

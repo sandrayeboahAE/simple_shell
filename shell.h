@@ -12,6 +12,7 @@
 #include <limits.h>
 #include <fcntl.h>
 #include <errno.h>
+#include <stddef.h>
 
 /* to write/read buffers */
 #define WRITE_BUF_SIZE 1024
@@ -35,7 +36,7 @@
 #define HIST_FILE "simple_shell_history"
 #define HIST_MAX 4096
 
-extem char **environ;
+extern char **environ;
 
 /**
  * struct liststr - singly linked list
@@ -187,7 +188,7 @@ int _myalias(info_t *);
 
 /*toem_getline.c */
 ssize_t get_input(info_t *);
-int _getline(info_t *, char **, size_t *);
+int _getline(info_t *, char **, ssize_t *);
 void sigintHandler(int);
 
 /* toem_getinfo.c */
@@ -217,69 +218,22 @@ int renumber_history(info_t *info);
 /* toem_lists.c */
 list_t *add_node(list_t **, const char *, int);
 list_t *add_node_end(list_t **, const char *, int);
-size_t print_list_str(const list_t *);
+ssize_t print_list_str(const list_t *);
 int delete_node_at_index(list_t **, unsigned int);
 void free_list(list_t **);
 
 /* toem_lists1.c */
-size_t list_len(const list_t *);
+ssize_t list_len(const list_t *);
 char **list_to_strings(list_t *);
-size_t print_list(const list_t *);
+ssize_t print_list(const list_t *);
 list_t *node_starts_with(list_t *, char *, char);
 ssize_t get_node_index(list_t *, list_t *);
 
 /* toem_vars.c */
-int is_chain(info_t *, char *, size_t *);
-void check_chain(info_t *, char *, size_t *, size_t, size_t);
+int is_chain(info_t *, char *, ssize_t *);
+void check_chain(info_t *, char *, ssize_t *, ssize_t, ssize_t);
 int replace_alias(info_t *);
 int replace_vars(info_t *);
 int replace_string(char **, char *);
 
 #endif
-
-=======
-#ifndef SHELL_H
-#define SHELL_H
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <unistd.h>
-#include <sys/types.h>
-#include <sys/wait.h>
-#include <sys/stat.h>
-#include <errno.h>
-#include <fcntl.h>
-#include <guards>
-#define DELIM " \t\n"
-extern char **environ;
-
-char *read_line(void);
-char **tokenizer(char *line);
-int _execute(char **command, char **argv, int idx);
-char *_getenv(char *variable);
-char *_getpath(char *command);
-
-/* =====string.c===== */
-char *_strdup(const char *str);
-int _strcmp(char *s1, char *s2);
-int _strlen(char *s);
-char *_strcat(char *dest, char *src);
-char *_strcpy(char *dest, char *src);
-
-/* =====tools.c===== */
-void freearray2D(char **array);
-void print_error(char *name, char *cmd, int idx);
-char *_itoa(int n);
-void reverse_string(char *str, int len);
-
-int is_positive_number(char *str);
-int _atoi(char *str);
-
-/* =====handlebuiltin.c.c===== */
-void handle_builtin(char **command, char **argv, int *status, int idx);
-void print_env(char **command, int *status);
-int is_builtin(char *command);
-void exit_shell(char **command, char **argv, int *status, int idx)
-
-#endif
->>>>>>> 6c2fee03f60f3ab50b45db6683d1a573fdd209fe
